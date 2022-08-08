@@ -43,4 +43,4 @@ jobs:
           echo github.ref: ${{github.ref}}
           echo github.ref_name: ${{github.ref_name}}
           script_dir=$(dirname $(readlink -f $0))
-          echo script_dir: ${{script_dir}}
+          echo script_dir: ${script_dir}
