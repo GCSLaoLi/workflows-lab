@@ -5,3 +5,4 @@ set -e
 script_dir=$(dirname $(readlink -f $0))
 # 获取当前CPU架构
 arch=$(uname -m)
+ go env GOARCH > arch.txt
