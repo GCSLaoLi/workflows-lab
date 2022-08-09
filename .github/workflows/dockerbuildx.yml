@@ -13,6 +13,11 @@ jobs:
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
+      - 
+        name: Set up Golang
+        uses: docker/setup-golang-action@v3
+        run: |
+          go env
       -
         name: Set up Docker Buildx
         id: buildx
