@@ -44,10 +44,16 @@ jobs:
 #          docker build . --platform linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le,linux/s390x -t ${{ steps.buildx.outputs.name }}
 #          docker push ${{ steps.buildx.outputs.name }}
       -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{GITHUB_REPOSITORY}}
+      -
         name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: .
           platforms: linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le,linux/s390x
           push: true
-          tags: ${{env.lowerRepo}}:latest
+          tags:  ${{ steps.meta.outputs.tags }}
