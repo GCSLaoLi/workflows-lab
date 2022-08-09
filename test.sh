@@ -5,4 +5,10 @@ set -e
 script_dir=$(dirname $(readlink -f $0))
 # 获取当前CPU架构
 arch=$(uname -m)
- go env GOARCH > arch.txt
+#  go env GOARCH > arch.txt
+goarch=$(go env GOARCH)
+echo $goarch
+goos="ANNNNNNNdDD"
+echo $goos
+upgoos=$(echo $goos | tr '[:upper:]' '[:lower:]')
+echo $upgoos
