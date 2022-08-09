@@ -13,9 +13,6 @@ jobs:
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-      - 
-        name: Set up Golang
-        uses: actions/setup-go@v3
       -
         name: Set up Docker Buildx
         id: buildx
@@ -37,13 +34,6 @@ jobs:
           echo "Flags:     ${{ steps.buildx.outputs.flags }}"
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
       -
-        name: Set Environment
-        run: |
-          go env
-          echo "lowerRepo=$(echo ${GITHUB_REPOSITORY} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-#          docker build . --platform linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le,linux/s390x -t ${{ steps.buildx.outputs.name }}
-#          docker push ${{ steps.buildx.outputs.name }}
-      -
         name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -57,3 +47,4 @@ jobs:
           platforms: linux/amd64,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le,linux/s390x
           push: true
           tags:  ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
